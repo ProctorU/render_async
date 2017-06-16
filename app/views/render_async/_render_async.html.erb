@@ -1,8 +1,7 @@
 <div id="<%= container_name %>">
-  <div id="<%= container_name %>_spinner" class="sk-spinner sk-spinner-double-bounce">
-    <div class="sk-double-bounce1"></div>
-    <div class="sk-double-bounce2"></div>
-  </div>
+  <p id="<%= container_name %>_async_loading">
+    <%= capture(&block) %>
+  </p>
 </div>
 
 <% content_for :render_async do %>
@@ -18,7 +17,7 @@
           $("#<%= container_name %>").html(response);
         })
         .always(function(response, status) {
-          $("#<%= container_name %>_spinner").hide();
+          $("#<%= container_name %>_async_loading").hide();
         });
     }(jQuery));
   </script>
